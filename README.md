@@ -6,9 +6,22 @@ Here are some opensource works referenced when creating this project.
 
 - https://gitlab.kitware.com/cmake/community/wikis/doc/ctest/Testing-With-CTest
 - https://github.com/Crascit/DownloadProject (with older cmake)
-- https://gist.github.com/johnb003/65982fdc7a1274fdb023b0c68664ebe4 (with newer cmake 3.9)
 
 And ofcourse the ever so helpful stackoverflow.
+
+# Required packages
+The build host is assumed Ubuntu 16.04. the following packages are required.
+* build-essential - this contains all libraries and toolchain needed to build the project
+* cmake - the project use cmake to create cross-platform makefile/project configuration file
+* git - the project is committed in git, and use git to pull google-test for unittesting
+
+Use the following command to install the package on a clean host.
+```
+sudo apt-get install -y --no-install-recommends \
+build-essential \
+cmake \
+git
+```
 
 # Build step
 

@@ -27,10 +27,18 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 set(INCLUDE_DIRS ../src/)
-set(HEADER_FILES ${INCLUDE_DIRS}/letter_type.h)
+set(HEADER_FILES
+    ${INCLUDE_DIRS}/letter_type.h
+    ${INCLUDE_DIRS}/args_parser.h)
 
-add_executable (LetterTest letter_type_test.cpp ${HEADER_FILES})
-target_link_libraries(LetterTest gtest gmock_main libwords)
-target_include_directories(LetterTest PRIVATE ${INCLUDE_DIRS})
+# Target test list
+add_executable (LetterTypeTest letter_type_test.cpp ${HEADER_FILES})
+target_link_libraries(LetterTypeTest gtest gmock_main libwords)
+target_include_directories(LetterTypeTest PRIVATE ${INCLUDE_DIRS})
 
-add_test(NAME LetterTest COMMAND LetterTest)
+add_executable (ArgsParserTest args_parser_test.cpp ${HEADER_FILES})
+target_link_libraries(ArgsParserTest gtest gmock_main libwords)
+target_include_directories(ArgsParserTest PRIVATE ${INCLUDE_DIRS})
+
+add_test(NAME LetterTypeTest COMMAND LetterTypeTest)
+add_test(NAME ArgsParserTest COMMAND ArgsParserTest)

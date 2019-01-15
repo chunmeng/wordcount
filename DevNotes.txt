@@ -1,0 +1,24 @@
+Development Notes
+
+This is to keep the understanding of the problem to solve and the thought process of the developer.
+
+Analysis of the reference method:
+---------------------------------
+
+(tr "[:space:][:punct:]" "\n" | sort | grep -v "^$" | uniq -c | sort -nr | head -40) < moby.txt
+
+tr "[:space:][:punct:]" "\n"    // Step 1: truncate and convert all space and punct to linefeed \n
+sort                            // Step 2: sort them
+grep -v "^$"                    // Step 3: Take only non-empty lines
+uniq -c                         // Step 4: Filter matching lines and count them, output in "count" "string" format
+sort -nr                        // Step 5: Sort by count numberic value and reserve (highest count first)
+head -20                        // Step 6: Limit the output to 20
+
+Based on the reference output, these additional requirements need to be meet:
+   - words are counted case sensitive, i.e. To != to
+   - non-letter need to be taken care of (!,.[]) etc. This is what the tr [:punct:] does.
+   - ' is also non-letter that break words - e.g. Gutenberg's -> ["Gutenberg", "s"]
+   - Numbers are considered a word or part of a word, e.g. 16th
+   - In the final output, words that has same freq are ordered
+     cap first Z -> A
+     z (first) - a (last)
