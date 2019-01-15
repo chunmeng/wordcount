@@ -16,23 +16,23 @@ public:
     ArgsParser(int argc, char** argv)
     {
         for (int i = 1; i < argc; ++i)
-            this->tokens.push_back(std::string(argv[i]));
+            tokens_.push_back(std::string(argv[i]));
     }
     const std::string& getOption(const std::string& option) const
     {
-        std::vector<std::string>::const_iterator itr;
-        itr = std::find(this->tokens.begin(), this->tokens.end(), option);
-        if (itr != this->tokens.end() && ++itr != this->tokens.end()) { return *itr; }
+        std::vector<std::string>::const_iterator it;
+        it = std::find(tokens_.begin(), tokens_.end(), option);
+        if (it != tokens_.end() && ++it != tokens_.end()) { return *it; }
         static const std::string empty("");
         return empty;
     }
     bool optionExists(const std::string& option) const
     {
-        return std::find(this->tokens.begin(), this->tokens.end(), option) != this->tokens.end();
+        return std::find(tokens_.begin(), tokens_.end(), option) != tokens_.end();
     }
 
 private:
-    std::vector<std::string> tokens;
+    std::vector<std::string> tokens_;
 };
 
 #endif // ARGS_PARSER_H
