@@ -1,3 +1,5 @@
+#ifndef ARGS_PARSER_H
+#define ARGS_PARSER_H
 
 #include <algorithm>
 #include <string>
@@ -32,3 +34,5 @@ public:
 private:
     std::vector<std::string> tokens;
 };
+
+#endif // ARGS_PARSER_H
