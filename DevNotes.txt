@@ -1,6 +1,6 @@
 Development Notes
 
-This is to keep the understanding of the problem to solve and the thought process of the developer.
+This is to keep the understanding of the problem and the thought process of the solution.
 
 Analysis of the reference method:
 ---------------------------------
@@ -19,6 +19,18 @@ Based on the reference output, these additional requirements need to be meet:
    - non-letter need to be taken care of (!,.[]) etc. This is what the tr [:punct:] does.
    - ' is also non-letter that break words - e.g. Gutenberg's -> ["Gutenberg", "s"]
    - Numbers are considered a word or part of a word, e.g. 16th
-   - In the final output, words that has same freq are ordered
-     cap first Z -> A
-     z (first) - a (last)
+   - In the final output, words that has same freq are ordered in
+      1 voyaging
+      1 voyagers
+      1 VOYAGER
+      1 voyaged
+      i.e. they are cap insensitive and always check the next letter if current letter is the same
+
+Some design choice note:
+- Mostly header only library for simplicity
+- The spec stated only 2 copy of the result can be hold on ram:
+  For this project, one for table(word -> count), another for table(count -> word)
+- For the case of table(word -> count):
+  Only counting unique words and order is not important, so using unordered_map is faster
+- For the table(count -> word):
+  The entries are ordered by count, then word (case insensitive), so use multiset

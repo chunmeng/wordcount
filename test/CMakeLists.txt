@@ -29,7 +29,8 @@ endif()
 set(INCLUDE_DIRS ../src/)
 set(HEADER_FILES
     ${INCLUDE_DIRS}/letter_type.h
-    ${INCLUDE_DIRS}/args_parser.h)
+    ${INCLUDE_DIRS}/args_parser.h
+    ${INCLUDE_DIRS}/map_transform.h)
 
 # Target test list
 add_executable (LetterTypeTest letter_type_test.cpp ${HEADER_FILES})
@@ -40,5 +41,10 @@ add_executable (ArgsParserTest args_parser_test.cpp ${HEADER_FILES})
 target_link_libraries(ArgsParserTest gtest gmock_main libwords)
 target_include_directories(ArgsParserTest PRIVATE ${INCLUDE_DIRS})
 
+add_executable (MapTransformTest map_transform_test.cpp ${HEADER_FILES})
+target_link_libraries(MapTransformTest gtest gmock_main libwords)
+target_include_directories(MapTransformTest PRIVATE ${INCLUDE_DIRS})
+
 add_test(NAME LetterTypeTest COMMAND LetterTypeTest)
 add_test(NAME ArgsParserTest COMMAND ArgsParserTest)
+add_test(NAME MapTransformTest COMMAND MapTransformTest)

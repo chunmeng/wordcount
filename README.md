@@ -23,7 +23,25 @@ cmake \
 git
 ```
 
-# Build step
+# Build Instructions
+A convinient script is created to generate the app and execute the test.
+It can be invoked with:
+```
+./build.sh
+```
+The executable program is created in ./build/src/. The program executable is named wordfreq.
+
+## Output and Run
+To run the program:
+```
+./build/src/wordfreq -f <input filepath> -n N
+```
+e.g. assuming moby.txt is located in current directory
+```
+./build/src/wordfreq -f moby.txt -n 20
+```
+
+# Manual Build Steps
 
 1. Generate the out of source Makefiles
 ```
@@ -38,8 +56,7 @@ cmake --build ./build
 ```
 
 3. The executable binary is under build/src/
-
-4. The test binary is under build/test/
+   The test binary is under build/test/
    - Run the test
     ```
     cmake --build ./build --target test
@@ -48,7 +65,7 @@ cmake --build ./build
 - Alternatively
    - It can be runs individually
     ```
-    ./build/test/Test
+    ./build/test/<TestBinary>
     ```
    - Or using ctest (Need to change directory)
     ```
