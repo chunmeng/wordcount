@@ -9,7 +9,6 @@
 #include <iterator>
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 using namespace std;
 
