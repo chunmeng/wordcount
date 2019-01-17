@@ -7,14 +7,14 @@
 #include <iomanip>
 #include <iostream>
 #include <iterator>
-#include <unordered_map>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
 
 static const int DefaultNumToDisplay = 20;
-struct Counter {
+struct WordCounter {
     std::unordered_map<std::string, int> wordCount;
     void operator()(const std::string& item)
     {
@@ -77,20 +77,17 @@ int main(int argc, char** argv)
         return 0;
     }
     input.imbue(std::locale(std::locale(), new LetterType()));
-    // @TODO: Move to a WordFreqApp(stream, entry) class
+    // @TODO: Move to a standalone WordFreqApp() class
     istream_iterator<string> start(input);
     istream_iterator<string> end;
     // read stream and fill into a map[word]: count
-    std::unordered_map<std::string, int> byWordMap = std::for_each(start, end, Counter());
-    // for (auto& m : byWordMap) {
-    //     cout << setw(7) << m.second << " " << m.first << endl;
-    // }
+    std::unordered_map<std::string, int> byWordMap = std::for_each(start, end, WordCounter());
 
     // transform to map[count]: word
-    std::multiset<std::pair<int, string>> byCountMap = MapTransform::FlipMap(byWordMap);
+    std::multiset<std::pair<int, string>, CustomPairComp> byCountMap = MapTransform::FlipMap(byWordMap);
     int n = 0;
-    for (auto it = byCountMap.rbegin(); it != byCountMap.rend(); ++it) {
-        cout << setw(7) << it->first << " " << it->second << endl;
+    for (auto& it : byCountMap) {
+        cout << setw(7) << it.first << " " << it.second << endl;
         if (entryToDisplay == 0) continue;
         if (++n >= entryToDisplay) break;
     }
