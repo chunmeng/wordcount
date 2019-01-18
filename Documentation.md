@@ -79,3 +79,7 @@ Build Infrastructure Note
   The Dockerfile is added as a bonus. It can be used to generate the docker image needed to build this project.
   It keeps the build environment isolated from the host environment and avoid potential conflict - especially
   if the build requires old tools.
+
+TODOS
+-----
+- Add UT for WordFreqApp()

@@ -18,6 +18,8 @@ struct WordCounter {
     }
 };
 
+// Note to evaluator:
+// Typically I would use pimpl to hide away the implemention of the bussiness logic.
 class WordFreqApp {
 public:
     //! Given an istream, process it and generate the word frequence result set

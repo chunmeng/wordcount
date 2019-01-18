@@ -39,8 +39,8 @@ public:
         return std::pair<B, A>(p.second, p.first);
     }
 
-    template <typename A, typename B>
-    static std::multiset<std::pair<B, A>, CustomPairComp> FlipMap(const std::unordered_map<A, B>& src)
+    template <typename A, typename B, template <typename...> class Map>
+    static std::multiset<std::pair<B, A>, CustomPairComp> FlipMap(const Map<A, B>& src)
     {
         std::multiset<std::pair<B, A>, CustomPairComp> dst;
         std::transform(src.begin(), src.end(), std::inserter(dst, dst.begin()), MapTransform::FlipPair<A, B>);

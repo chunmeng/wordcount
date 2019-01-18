@@ -30,6 +30,20 @@ TEST_F(MapTransformTest, flipMapTest)
 
 TEST_F(MapTransformTest, flipMapDupTest)
 {
+    std::map<std::string, int> in = {{"Key1", 1}, {"Key2", 1}, {"Key3", 1}};
+    // test operation
+    auto out = MapTransform::FlipMap(in);
+    EXPECT_EQ(3, out.size());
+    auto n = out.size();
+    for (auto& o : out) {
+        EXPECT_EQ(1, o.first);
+        EXPECT_EQ("Key" + std::to_string(n), o.second);
+        n--;
+    }
+}
+
+TEST_F(MapTransformTest, flipHashMapDupTest)
+{
     std::unordered_map<std::string, int> in = {{"Key1", 1}, {"Key2", 1}, {"Key3", 1}};
     // test operation
     auto out = MapTransform::FlipMap(in);
