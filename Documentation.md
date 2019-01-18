@@ -45,14 +45,13 @@ Design Choice Note
 
     The entries need to be ordered by both K and V in a specific way to matching the reference output, so use multiset. (It does seem like set can also be used as there shouldn't be a pair in the map that's equal in both K and V).
 
-    multiset is slightly better as it does not do == check.
+    multiset is slightly(negligible) better as it does not do equal heck.
 
 Build Infrastructure Note
 -------------------------
 - About cmake project files
 
   cmake is used as a portable way to generate the necessary makefiles.
-  (I have a base cmake project - so it's also because it's convinient to setup.)
   For this exercise, only tested the build under Ubuntu with make.
 
 - About googletest dependency
@@ -72,3 +71,9 @@ Build Infrastructure Note
 - About CI
 
   The .travis.yml is added. The travis-ci.org can be used as a CI backend, when repo is make available in github.
+
+- About Docker
+
+  The Dockerfile is added as a bonus. It can be used to generate the docker image needed to build this project.
+  It keeps the build environment isolated from the host environment and avoid potential conflict - especially
+  if the build requires old tools.
