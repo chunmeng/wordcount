@@ -32,10 +32,12 @@ Based on the reference output, these additional requirements need to be meet:
 
 Design Choice Note
 ------------------
-- Mostly header only for simplicity
+- For simplicity, the library is header only
+
 - The spec stated only 2 copy of the result can be hold on ram.
 
   For the purpose of this project, my understanding is one for table(word -> count), another for table(count -> word)
+
 - The initial version use map and multimap for the result - it does the job if the order of the words with same count in final display is not an issue.
 - For the final solution,
   - unordered_map is used for table(word -> count):

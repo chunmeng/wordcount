@@ -1,29 +1,15 @@
 #include "args_parser.h"
 #include "letter_type.h"
-#include "map_transform.h"
+#include "word_freq_app.h"
 
-#include <algorithm>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
 #include <iterator>
 #include <string>
-#include <unordered_map>
 
 using namespace std;
 
 static const int DefaultNumToDisplay = 20;
-struct WordCounter {
-    std::unordered_map<std::string, int> wordCount;
-    void operator()(const std::string& item)
-    {
-        ++wordCount[item];
-    }
-    operator std::unordered_map<std::string, int>()
-    {
-        return wordCount;
-    }
-};
 
 static void PrintHelp()
 {
@@ -76,19 +62,8 @@ int main(int argc, char** argv)
         return 0;
     }
     input.imbue(std::locale(std::locale(), new LetterType()));
-    // @TODO: Move to a standalone WordFreqApp() class
-    istream_iterator<string> start(input);
-    istream_iterator<string> end;
-    // read stream and fill into a map[word]: count
-    std::unordered_map<std::string, int> byWordMap = std::for_each(start, end, WordCounter());
-
-    // transform to map[count]: word
-    std::multiset<std::pair<int, string>, CustomPairComp> byCountMap = MapTransform::FlipMap(byWordMap);
-    int n = 0;
-    for (auto& it : byCountMap) {
-        cout << setw(7) << it.first << " " << it.second << endl;
-        if (entryToDisplay == 0) continue;
-        if (++n >= entryToDisplay) break;
-    }
+    WordFreqApp app;
+    app.process(input);
+    app.print(entryToDisplay);
     return 0;
 }
