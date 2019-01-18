@@ -22,8 +22,6 @@ static void PrintHelp()
 
 int main(int argc, char** argv)
 {
-    string inputFile = "";
-
     // Parse arguments
     ArgsParser args(argc, argv);
     if (argc <= 1 || args.optionExists("-h")) {
@@ -36,7 +34,6 @@ int main(int argc, char** argv)
         PrintHelp();
         return 0;
     }
-    inputFile = filename;
 
     unsigned entryToDisplay = DefaultNumToDisplay;
     const std::string& head = args.getOption("-n");
@@ -56,9 +53,9 @@ int main(int argc, char** argv)
     }
 
     ifstream input;
-    input.open(inputFile.c_str());
+    input.open(filename.c_str());
     if (!input.good()) {
-        cout << "Error: Oops! Input file \"" << inputFile << "\" couldn't be opened." << endl;
+        cout << "Error: Oops! Input file \"" << filename << "\" couldn't be opened." << endl;
         return 0;
     }
     input.imbue(std::locale(std::locale(), new LetterType()));
