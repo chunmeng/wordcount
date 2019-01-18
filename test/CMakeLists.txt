@@ -30,21 +30,27 @@ set(INCLUDE_DIRS ../src/)
 set(HEADER_FILES
     ${INCLUDE_DIRS}/letter_type.h
     ${INCLUDE_DIRS}/args_parser.h
-    ${INCLUDE_DIRS}/map_transform.h)
+    ${INCLUDE_DIRS}/map_transform.h
+    ${INCLUDE_DIRS}/word_freq_app.h)
 
 # Target test list
+# @TODO: Use loop to add all test files automatically
 add_executable (LetterTypeTest letter_type_test.cpp ${HEADER_FILES})
 target_link_libraries(LetterTypeTest gtest gmock_main libwords)
 target_include_directories(LetterTypeTest PRIVATE ${INCLUDE_DIRS})
+add_test(NAME LetterTypeTest COMMAND LetterTypeTest)
 
 add_executable (ArgsParserTest args_parser_test.cpp ${HEADER_FILES})
 target_link_libraries(ArgsParserTest gtest gmock_main libwords)
 target_include_directories(ArgsParserTest PRIVATE ${INCLUDE_DIRS})
+add_test(NAME ArgsParserTest COMMAND ArgsParserTest)
 
 add_executable (MapTransformTest map_transform_test.cpp ${HEADER_FILES})
 target_link_libraries(MapTransformTest gtest gmock_main libwords)
 target_include_directories(MapTransformTest PRIVATE ${INCLUDE_DIRS})
-
-add_test(NAME LetterTypeTest COMMAND LetterTypeTest)
-add_test(NAME ArgsParserTest COMMAND ArgsParserTest)
 add_test(NAME MapTransformTest COMMAND MapTransformTest)
+
+add_executable (WordAppFreqTest word_freq_app_test.cpp ${HEADER_FILES})
+target_link_libraries(WordAppFreqTest gtest gmock_main libwords)
+target_include_directories(WordAppFreqTest PRIVATE ${INCLUDE_DIRS})
+add_test(NAME WordAppFreqTest COMMAND WordAppFreqTest)

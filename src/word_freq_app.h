@@ -1,7 +1,11 @@
+#ifndef WORD_FREQ_APP_H
+#define WORD_FREQ_APP_H
+
 #include "map_transform.h"
 
 #include <algorithm>
 #include <iomanip>
+#include <iostream>
 #include <istream>
 #include <iterator>
 #include <unordered_map>
@@ -28,10 +32,10 @@ public:
         std::istream_iterator<std::string> start(input);
         std::istream_iterator<std::string> end;
         // read stream and fill into a map[word]: count
-        std::unordered_map<std::string, int> byWordMap = std::for_each(start, end, WordCounter());
+        std::unordered_map<std::string, int> byWord = std::for_each(start, end, WordCounter());
 
         // transform to map[count]: word
-        result_ = MapTransform::FlipMap(byWordMap);
+        result_ = MapTransform::FlipMap(byWord);
     }
     //! Print the top n entries of the result to standard output stream
     void print(unsigned topN = 20)
@@ -47,3 +51,5 @@ public:
 private:
     std::multiset<std::pair<int, std::string>, CustomPairComp> result_;
 };
+
+#endif // WORD_FREQ_APP_H
