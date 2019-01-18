@@ -5,6 +5,7 @@
 
 using namespace testing;
 
+// Simply use the sort order needed by the app for quick testing
 struct TestComparator {
     bool operator()(const std::pair<int, std::string>& lhs, const std::pair<int, std::string>& rhs) const
     {
@@ -24,7 +25,7 @@ struct TestComparator {
 class MapTransformTest : public Test {
 };
 
-TEST_F(MapTransformTest, flipPairTest)
+TEST_F(MapTransformTest, flipPair)
 {
     std::pair<std::string, int> in = {"Key", 1};
     auto out = MapTransform::FlipPair(in);
@@ -32,7 +33,7 @@ TEST_F(MapTransformTest, flipPairTest)
     EXPECT_EQ("Key", out.second);
 }
 
-TEST_F(MapTransformTest, flipMapTest)
+TEST_F(MapTransformTest, flipMap)
 {
     std::unordered_map<std::string, int> in = {{"Key1", 1}, {"Key2", 2}, {"Key3", 3}};
     auto out = MapTransform::FlipMap(in);
@@ -45,7 +46,7 @@ TEST_F(MapTransformTest, flipMapTest)
     }
 }
 
-TEST_F(MapTransformTest, flipMapDupTest)
+TEST_F(MapTransformTest, flipMapDup)
 {
     std::map<std::string, int> in = {{"Key1", 1}, {"Key2", 1}, {"Key3", 1}};
     // test operation
@@ -59,7 +60,7 @@ TEST_F(MapTransformTest, flipMapDupTest)
     }
 }
 
-TEST_F(MapTransformTest, flipHashMapDupTest)
+TEST_F(MapTransformTest, flipHashMapDup)
 {
     std::unordered_map<std::string, int> in = {{"Key1", 1}, {"Key2", 1}, {"Key3", 1}};
     // test operation

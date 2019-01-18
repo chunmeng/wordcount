@@ -7,7 +7,7 @@ using namespace testing;
 class ArgsParserTest : public Test {
 };
 
-TEST_F(ArgsParserTest, inputTest)
+TEST_F(ArgsParserTest, input)
 {
     char progPath[] = "/test/program/path";
 

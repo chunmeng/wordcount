@@ -8,7 +8,7 @@ using namespace testing;
 class LetterTest : public Test {
 };
 
-TEST_F(LetterTest, spaceStreamTest)
+TEST_F(LetterTest, spaceStream)
 {
     std::string in = "Word1 Word2 Word3";
     std::istringstream iss(in);
@@ -25,7 +25,7 @@ TEST_F(LetterTest, spaceStreamTest)
     EXPECT_EQ("Word3", tokens.at(2));
 }
 
-TEST_F(LetterTest, enclosedStreamTest)
+TEST_F(LetterTest, enclosedStream)
 {
     std::string in = "[Word1] {Word2} <Word3> \"Word4\" \'Word5\'";
 
@@ -43,7 +43,7 @@ TEST_F(LetterTest, enclosedStreamTest)
     }
 }
 
-TEST_F(LetterTest, punctStreamTest)
+TEST_F(LetterTest, punctStream)
 {
     std::string in = "Word1! Word2? Word3!~ Word4. Word5, Word6; He's";
     std::istringstream iss(in);
@@ -66,7 +66,7 @@ TEST_F(LetterTest, punctStreamTest)
     EXPECT_EQ("s", tokens.at(7));
 }
 
-TEST_F(LetterTest, numberStreamTest)
+TEST_F(LetterTest, numberStream)
 {
     std::string in = "1~ 2! 3 4@ 5# 6$ 7% 8^ 9& 10* 11( 12) 13- 14+ 15` 16_ 17= 18| 19\\ 20/";
 
