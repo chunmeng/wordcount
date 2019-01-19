@@ -51,6 +51,24 @@ Design Choice Note
 
 Build Infrastructure Note
 -------------------------
+- Directory structure
+
+  * / 
+    - root directory contains the build scripts and config files
+  * /build
+    - this is a generated content, all output are generated here
+  * /cmake
+    - this is customized cmake scripts used for the project
+  * /docker
+    - contains dockerfile used to create the docker image
+  * /src
+    - the application source code goes here
+  * /test
+    - unit test source code goes here
+  * /data
+    - this is containing the doc and data provided by groundlabs and used for
+      verification. Not added to git repo.
+
 - About cmake project files
 
   cmake is used as a portable way to generate the necessary makefiles.
@@ -80,6 +98,12 @@ Build Infrastructure Note
   It keeps the build environment isolated from the host environment and avoid potential conflict - especially
   if the build requires old tools.
 
-TODOS
------
-- Add UT for WordFreqApp()
+- About profiling analysis and optimization
+  
+  The app was checked for memleak and hotspot with valgrind.
+  ```
+  sudo apt install valgrind kcachegrind
+  valgrind --leak-check=full -v ./build/src/wordfreq -f moby.-n 0
+  valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes -v ./build/src/wordfreq -f moby.txt -n 0
+  kcachegrind
+  ```
