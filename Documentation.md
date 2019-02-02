@@ -66,7 +66,7 @@ Build Infrastructure Note
   * /test
     - unit test source code goes here
   * /data
-    - this is containing the doc and data provided by groundlabs and used for
+    - this contains the doc and data provided and used for
       verification. Not added to git repo.
 
 - About cmake project files
@@ -103,7 +103,7 @@ Build Infrastructure Note
   The app was checked for memleak and hotspot with valgrind.
   ```
   sudo apt install valgrind kcachegrind
-  valgrind --leak-check=full -v ./build/src/wordfreq -f moby.-n 0
-  valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes -v ./build/src/wordfreq -f moby.txt -n 0
+  valgrind --leak-check=full -v ./build/src/wordcount -f moby.-n 0
+  valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes -v ./build/src/wordcount -f moby.txt -n 0
   kcachegrind
   ```

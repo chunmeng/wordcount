@@ -1,6 +1,6 @@
 #include "args_parser.h"
 #include "letter_type.h"
-#include "word_freq_app.h"
+#include "word_count_app.h"
 
 #include <fstream>
 #include <iostream>
@@ -13,7 +13,7 @@ static const int DefaultNumToDisplay = 20;
 
 static void PrintHelp()
 {
-    cout << "wordfreq usage:\n";
+    cout << "wordcount usage:\n";
     cout << "\t -f filename   Mandatory. Provide the input file to be analyzed.\n";
     cout << "\t -n N          Optional. Provide number of top entries to display.\n";
     cout << "\t               Default 20. 0 to display all entries.\n";
@@ -59,7 +59,7 @@ int main(int argc, char** argv)
         return 0;
     }
     input.imbue(std::locale(std::locale(), new LetterType()));
-    WordFreqApp app;
+    WordCountApp app;
     app.process(input);
     app.print(entryToDisplay);
     return 0;

@@ -1,5 +1,5 @@
-#ifndef WORD_FREQ_APP_H
-#define WORD_FREQ_APP_H
+#ifndef word_count_app_H
+#define word_count_app_H
 
 #include "map_transform.h"
 
@@ -44,9 +44,7 @@ struct CustomPairCompare {
     }
 };
 
-// Note to evaluator:
-// Typically I would use pimpl to hide away the implemention of the bussiness logic.
-class WordFreqApp {
+class WordCountApp {
 public:
     //! Given an istream, process it and generate the word frequence result set
     void process(std::istream& input)
@@ -74,4 +72,4 @@ private:
     std::multiset<std::pair<int, std::string>, CustomPairCompare> result_;
 };
 
-#endif // WORD_FREQ_APP_H
+#endif // word_count_app_H

@@ -46,14 +46,14 @@ This build the docker image (Ubuntu 16.04) with necessary tools installed, and i
 from the docker container.
 
 ### Output and Run
-The executable program is created in ./build/src/. The program executable is named **wordfreq**.
+The executable program is created in ./build/src/. The program executable is named **wordcount**.
 To run the program:
 ```
-./build/src/wordfreq -f <input filepath> -n N
+./build/src/wordcount -f <input filepath> -n N
 ```
 e.g. assuming moby.txt is located in current directory
 ```
-./build/src/wordfreq -f moby.txt -n 20
+./build/src/wordcount -f moby.txt -n 20
 ```
 
 ## Manual Build Steps
